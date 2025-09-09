@@ -1,0 +1,16 @@
+---
+export interface Props {
+  size?: number | string;   // diámetro (px, rem, etc.)
+  color?: string;           // color del punto
+  class?: string;           // clases extras (p. ej. shadow)
+  label?: string;           // opcional: nombre accesible
+}
+const { size = 12, color = '#22c55e', class: className, label, ...rest } = Astro.props as Props;
+const pixelSize = typeof size === 'number' ? `${size}px` : size;
+---
+<span
+  class={`inline-block rounded-full w-[var(--size)] h-[var(--size)] bg-[var(--dot)] ${className ?? ''}`}
+  style={`--size:${pixelSize}; --dot:${color};`}
+  {...(label ? { 'aria-label': label, role: 'img' } : { 'aria-hidden': 'true' })}
+  {...rest}
+/>

@@ -1,0 +1,25 @@
+---
+export interface Props {
+  size?: number | string;   // diámetro (px, rem, etc.)
+  color?: string;           // color del asterisco
+  class?: string;
+  label?: string;           // accesible (opcional)
+}
+const { size = 48, color = '#a3e635', class: className, label, ...rest } = Astro.props as Props;
+const pixelSize = typeof size === 'number' ? `${size}px` : size;
+---
+<span
+  class={`inline-block w-[var(--size)] h-[var(--size)] ${className ?? ''}`}
+  style={`--size:${pixelSize}; color:${color};`}
+  {...(label ? { 'aria-label': label, role: 'img' } : { 'aria-hidden': 'true' })}
+  {...rest}
+>
+  <svg viewBox="0 0 100 100" aria-hidden="true" class="w-full h-full">
+    <!-- barra horizontal -->
+    <rect x="20" y="44" width="60" height="12" rx="6" fill="currentColor" />
+    <!-- barra +60° -->
+    <rect x="20" y="44" width="60" height="12" rx="6" fill="currentColor" transform="rotate(60 50 50)" />
+    <!-- barra -60° -->
+    <rect x="20" y="44" width="60" height="12" rx="6" fill="currentColor" transform="rotate(-60 50 50)" />
+  </svg>
+</span>

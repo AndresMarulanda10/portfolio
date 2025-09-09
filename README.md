@@ -1,88 +1,46 @@
-# Portfolio Personal de Andres Marulanda
+# Astro Starter Kit: Basics
 
-Portfolio personal construido con Next.js y Tailwind CSS que muestra mis proyectos y habilidades como desarrollador de software.
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![Made with Next.js](https://img.shields.io/badge/Made%20with-Next.js-000000?style=flat&logo=next.js&logoColor=white)](https://nextjs.org)
-[![Styled with Tailwind](https://img.shields.io/badge/Styled%20with-Tailwind-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-[![Powered by Bun](https://img.shields.io/badge/Powered%20by-Bun-F9F1E1?style=flat&logo=bun&logoColor=black)](https://bun.sh)
-
-## 🚀 Stack Tecnológico
-
-- **Next.js** - Framework React con renderizado híbrido
-- **React** - Biblioteca para construir interfaces de usuario
-- **Tailwind CSS** - Framework CSS utilitario
-- **TypeScript** - JavaScript con tipado estático
-- **MDX** - Markdown mejorado con componentes React
-- **shadcn/ui** - Componentes UI basados en Radix UI y Tailwind
-- **Bun** - Entorno de ejecución rápido y gestor de paquetes
-
-## 📁 Estructura del Proyecto
-
-- `src/app/*` - Estructura de rutas basada en el App Router de Next.js
-- `src/components/*` - Componentes reutilizables
-- `src/data/*` - Datos estructurados y funciones para obtener contenido
-- `src/lib/*` - Utilidades y helpers
-- `content/*` - Contenido del blog en formato MDX
-- `public/*` - Archivos estáticos (imágenes, etc.)
-- `documentation/*` - Documentación del proyecto
-
-## 🔧 Desarrollo
-
-### Prerrequisitos
-
-- [Bun](https://bun.sh) instalado en tu sistema
-- Node.js 18.17 o superior (opcional, si prefieres usar npm)
-
-### Instalación con Bun (recomendado)
-
-```bash
-# Instalar dependencias
-bun install
-
-# Iniciar servidor de desarrollo
-bun run dev
-
-# Construir para producción
-bun run build
-
-# Iniciar servidor de producción local
-bun run start
+```sh
+bun create astro@latest -- --template basics
 ```
 
-### Instalación alternativa con npm
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-```bash
-# Instalar dependencias
-npm install
+## 🚀 Project Structure
 
-# Iniciar servidor de desarrollo
-npm run dev
+Inside of your Astro project, you'll see the following folders and files:
 
-# Construir para producción
-npm run build
-
-# Iniciar servidor de producción local
-npm run start
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src
+│   ├── assets
+│   │   └── astro.svg
+│   ├── components
+│   │   └── Welcome.astro
+│   ├── layouts
+│   │   └── Layout.astro
+│   └── pages
+│       └── index.astro
+└── package.json
 ```
 
-## 📚 Características Principales
+To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
-- **Diseño Responsivo**: Adaptado a dispositivos móviles y de escritorio
-- **Modo Oscuro**: Soporte para tema claro y oscuro
-- **MDX Blog**: Sistema de blog usando MDX para contenido enriquecido
-- **Animaciones**: Efectos visuales suaves para mejor experiencia de usuario
-- **SEO Optimizado**: Metadatos preparados para motores de búsqueda
+## 🧞 Commands
 
-## 📖 Documentación
+All commands are run from the root of the project, from a terminal:
 
-La documentación completa está disponible en la carpeta `documentation`:
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `bun install`             | Installs dependencies                            |
+| `bun dev`             | Starts local dev server at `localhost:4321`      |
+| `bun build`           | Build your production site to `./dist/`          |
+| `bun preview`         | Preview your build locally, before deploying     |
+| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `bun astro -- --help` | Get help using the Astro CLI                     |
 
-- **Arquitectura**: [ARCHITECTURE.md](documentation/ARCHITECTURE.md)
-- **Guía Técnica**: [TECHNICAL_GUIDE.md](documentation/TECHNICAL_GUIDE.md)
-- **Patrones de Diseño**: [DESIGN_PATTERNS.md](documentation/DESIGN_PATTERNS.md)
-- **Guía de Despliegue**: [DEPLOYMENT_GUIDE.md](documentation/DEPLOYMENT_GUIDE.md)
+## 👀 Want to learn more?
 
-## ⚖️ Licencia
-
-Este proyecto fue creado por [Andres Marulanda](https://github.com/AndresMarulanda10) y está licenciado bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

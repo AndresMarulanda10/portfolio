@@ -1,0 +1,31 @@
+---
+export interface Props {
+  size?: number | string;
+  label?: string;
+  class?: string;
+}
+const { size = 64, label, class: className, ...rest } = Astro.props as Props;
+const pixelSize = typeof size === 'number' ? `${size}px` : size;
+---
+<div
+  class={`
+    inline-flex items-center justify-center
+    rounded-full bg-[#a3e635] text-[#030712]
+    shadow-sm select-none
+    w-[var(--size)] h-[var(--size)]
+    ${className ?? ''}
+  `}
+  style={`--size:${pixelSize};`}
+  {...(label ? { 'aria-label': label, role: 'img' } : { 'aria-hidden': 'true' })}
+  {...rest}
+>
+  <span class="
+    flex items-center justify-center
+    w-1/2 h-1/2
+    [&>svg]:w-full [&>svg]:h-full
+    [&>svg]:fill-current [&>svg]:stroke-current
+    [&>img]:w-full [&>img]:h-full
+  ">
+    <slot />
+  </span>
+</div>

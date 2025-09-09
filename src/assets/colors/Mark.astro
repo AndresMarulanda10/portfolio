@@ -1,0 +1,60 @@
+---
+export interface Props {
+  size?: number | string;         // tamaño total del SVG
+  color?: string;                  // color principal (quotes)
+  shadowColor?: string;            // color de la sombra
+  shadowOffsetX?: number | string; // desplazamiento sombra X
+  shadowOffsetY?: number | string; // desplazamiento sombra Y
+  variant?: 'open' | 'close';      // comillas de apertura/cierre
+  class?: string;
+  label?: string;
+}
+
+const {
+  size = 56,
+  color = '#030712',
+  shadowColor = '#3b5bfd',
+  shadowOffsetX = 3,
+  shadowOffsetY = 0,
+  variant = 'open',
+  class: className,
+  label,
+  ...rest
+} = Astro.props as Props;
+
+const pixelSize = typeof size === 'number' ? `${size}px` : size;
+const dx = typeof shadowOffsetX === 'number' ? `${shadowOffsetX}px` : shadowOffsetX;
+const dy = typeof shadowOffsetY === 'number' ? `${shadowOffsetY}px` : shadowOffsetY;
+const rotate = variant === 'close' ? 'rotate(180 50 50)' : undefined;
+---
+
+<span
+  class={`inline-block w-[var(--size)] h-[var(--size)] ${className ?? ''}`}
+  style={`--size:${pixelSize}; --fg:${color}; --shadow:${shadowColor}; --dx:${dx}; --dy:${dy}; color: var(--fg);`}
+  {...(label ? { 'aria-label': label, role: 'img' } : { 'aria-hidden': 'true' })}
+  {...rest}
+>
+  <svg viewBox="0 0 100 100" aria-hidden="true" class="w-full h-full">
+    <g transform={rotate}>
+      <!-- Sombra (desplazada) -->
+      <g style="transform: translate(var(--dx), var(--dy));" fill="var(--shadow)">
+        <!-- comilla izquierda -->
+        <rect x="14" y="22" width="26" height="34" rx="10" />
+        <rect x="24" y="54" width="16" height="16" rx="8" />
+        <!-- comilla derecha -->
+        <rect x="46" y="22" width="26" height="34" rx="10" />
+        <rect x="56" y="54" width="16" height="16" rx="8" />
+      </g>
+
+      <!-- Comillas principales -->
+      <g fill="currentColor">
+        <!-- comilla izquierda -->
+        <rect x="14" y="22" width="26" height="34" rx="10" />
+        <rect x="24" y="54" width="16" height="16" rx="8" />
+        <!-- comilla derecha -->
+        <rect x="46" y="22" width="26" height="34" rx="10" />
+        <rect x="56" y="54" width="16" height="16" rx="8" />
+      </g>
+    </g>
+  </svg>
+</span>

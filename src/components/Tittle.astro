@@ -1,0 +1,66 @@
+
+---
+export interface Props {
+  text: string;
+  href?: string;                // si existe, renderiza <a>
+  as?: 'span' | 'button';       // por defecto <span>
+  size?: 'sm' | 'md' | 'lg';
+  bg?: string;                  // color de fondo
+  color?: string;               // color del texto
+  class?: string;
+}
+
+const {
+  text,
+  href,
+  as = 'span',
+  size = 'md',
+  bg = '#a3e635',        // similar al de tu diseño
+  color = '#030712',     // negro
+  class: className,
+  ...rest
+} = Astro.props as Props;
+
+const sizes: Record<NonNullable<Props['size']>, string> = {
+  sm: 'text-xs px-3 py-1',
+  md: 'text-sm px-4 py-1.5',
+  lg: 'text-base px-5 py-2',
+};
+
+const base =
+  'inline-flex items-center justify-center rounded-full select-none ' +
+  'font-extrabold uppercase tracking-wide bg-[var(--bg)] text-[var(--fg)] ' +
+  'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-colors';
+
+const style = `--bg:${bg}; --fg:${color};`;
+---
+
+{href ? (
+  <a
+    class={`${base} ${sizes[size]} ${className ?? ''}`}
+    href={href}
+    style={style}
+    {...rest}
+  >
+    {text}
+  </a>
+) : as === 'button' ? (
+  <button
+    type="button"
+    class={`${base} ${sizes[size]} ${className ?? ''}`}
+    style={style}
+    {...rest}
+  >
+    {text}
+  </button>
+) : (
+  <span
+    class={`${base} ${sizes[size]} ${className ?? ''}`}
+    style={style}
+    {...rest}
+  >
+    {text}
+  </span>
+)}
+
+

@@ -1,0 +1,30 @@
+---
+export interface Props {
+  length?: number | string;   // largo (ancho) de la barra
+  thickness?: number | string; // grosor (alto)
+  size?: number | string;     // alias de thickness para compatibilidad
+  color?: string;
+  class?: string;
+  label?: string;
+}
+
+const {
+  length = 56,
+  thickness,
+  size,
+  color = '#3b5bfd', // azul similar a la imagen
+  class: className,
+  label,
+  ...rest
+} = Astro.props as Props;
+
+const widthPx = typeof length === 'number' ? `${length}px` : length;
+const heightInput = thickness ?? size ?? 12;
+const heightPx = typeof heightInput === 'number' ? `${heightInput}px` : heightInput;
+---
+<span
+  class={`inline-block bg-[var(--bar)] w-[var(--w)] h-[var(--h)] rounded-full ${className ?? ''}`}
+  style={`--w:${widthPx}; --h:${heightPx}; --bar:${color};`}
+  {...(label ? { 'aria-label': label, role: 'img' } : { 'aria-hidden': 'true' })}
+  {...rest}
+/>
